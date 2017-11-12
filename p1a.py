@@ -22,7 +22,7 @@ class Net(nn.Module):
         self.bn2 = nn.BatchNorm2d(128)
         self.conv3 = nn.Conv2d(128, 256, 3, padding=(1,1))
         self.bn3 = nn.BatchNorm2d(256)
-        self.conv4 = nn.Conv2d(256, 512, 5, padding=(2,2))
+        self.conv4 = nn.Conv2d(256, 512, 3, padding=(1,1))
         self.bn4 = nn.BatchNorm2d(512)
         self.fc5 = nn.Linear(131072, 1024)
         self.bn5 = nn.BatchNorm1d(1024)
@@ -127,10 +127,10 @@ class Dataset_lfw(Dataset):
         fig.set_title('Sample #{}'.format(idx))
         fig.axis('off')
 
-train_data_root_dir = './tmp/lfw'
-train_data_txt_dir = './tmp/lfw/train.txt'
-test_data_root_dir = './tmp/lfw/'
-test_data_txt_dir = './tmp/lfw/test.txt'
+train_data_root_dir = './lfw'
+train_data_txt_dir = './lfw/train.txt'
+test_data_root_dir = './lfw'
+test_data_txt_dir = './lfw/test.txt'
 
 # model.cuda()
 # print(model)
@@ -172,21 +172,21 @@ testloader = DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
 
 
 def train(trainloader):
-    model = Net()
+    model = Net().cuda()
     criterion = nn.BCELoss()
     # optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     print(time.clock())
     print('Start Training')
-    for epoch in range(18):  # loop over the dataset multiple times
+    for epoch in range(10):  # loop over the dataset multiple times
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             labels = data['labels']
             img1 = data['image1']
             img2 = data['image2']
             # wrap them in Variable
-            # inputs1, inputs2, labels = Variable(img1.cuda()), Variable(img2.cuda()), Variable(labels.cuda())
-            inputs1, inputs2, labels = Variable(img1), Variable(img2), Variable(labels)
+            inputs1, inputs2, labels = Variable(img1.cuda()), Variable(img2.cuda()), Variable(labels.cuda())
+            # inputs1, inputs2, labels = Variable(img1), Variable(img2), Variable(labels)
             # zero the parameter gradients
             optimizer.zero_grad()
             # forward + backward + optimize
@@ -203,17 +203,17 @@ def train(trainloader):
 
     print('Finished Training')
     print(time.clock())
-    torch.save(model.state_dict(), './model/p1a.pkl')
+    torch.save(model.state_dict(), './p1a.pkl')
 
 
 
 
 def test(testloader):
-    model = Net()
+    model = Net().cuda()
     correct = 0
     total = 0
     print(time.clock())
-    model.load_state_dict(torch.load('./model/p1a.pkl'))
+    model.load_state_dict(torch.load('./p1a.pkl'))
     print('Start Testing')
     for i, data in enumerate(testloader, 0):
         print(i)
