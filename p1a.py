@@ -177,7 +177,7 @@ def train(trainloader):
     model = Net().cuda()
     criterion = nn.BCELoss()
     # optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    optimizer = optim.Adam(model.parameters(), lr=0.000001)
     print(time.clock())
     print('Start Training')
     for epoch in range(10):  # loop over the dataset multiple times
