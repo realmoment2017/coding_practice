@@ -172,6 +172,8 @@ testloader = DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
 
 
 def train(trainloader):
+    plot_x = []
+    plot_y = []
     model = Net().cuda()
     criterion = nn.BCELoss()
     # optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
@@ -196,11 +198,14 @@ def train(trainloader):
             optimizer.step()
             # print statistics
             running_loss += loss.data[0]
+            plot_x.append((epoch + 1) * (i + 1))
+            plot_y.append(running_loss)
             if i % 100 == 99:    # print every 20 mini-batches
                 print('[%d, %5d] loss: %.3f' %
                       (epoch + 1, i + 1, running_loss / 100))
                 running_loss = 0.0
-
+        plt.plot(plot_x, plot_y, 'bo')
+        plt.show()
     print('Finished Training')
     print(time.clock())
     torch.save(model.state_dict(), './p1a.pkl')
