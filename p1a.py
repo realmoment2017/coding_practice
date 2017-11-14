@@ -138,7 +138,7 @@ test_data_txt_dir = './lfw/test.txt'
 # print(len(params))
 
 trainset = Dataset_lfw(train_data_root_dir, train_data_txt_dir)
-trainloader = DataLoader(trainset, batch_size=4, shuffle=False, num_workers=2)
+trainloader = DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2)
 
 testset = Dataset_lfw(test_data_root_dir, test_data_txt_dir)
 testloader = DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
