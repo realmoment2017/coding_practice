@@ -11,7 +11,6 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
-
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -138,7 +137,7 @@ test_data_txt_dir = './lfw/test.txt'
 # print(len(params))
 
 trainset = Dataset_lfw(train_data_root_dir, train_data_txt_dir)
-trainloader = DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2)
+trainloader = DataLoader(trainset, batch_size=12, shuffle=True, num_workers=2)
 
 testset = Dataset_lfw(test_data_root_dir, test_data_txt_dir)
 testloader = DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
@@ -172,15 +171,14 @@ testloader = DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
 
 
 def train(trainloader):
-    plot_x = []
-    plot_y = []
     model = Net().cuda()
+    #model.load_state_dict(torch.load('./p1a.pkl'))
     criterion = nn.BCELoss()
     # optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-    optimizer = optim.Adam(model.parameters(), lr=0.000001)
+    optimizer = optim.Adam(model.parameters(), lr=0.00001)
     print(time.clock())
     print('Start Training')
-    for epoch in range(10):  # loop over the dataset multiple times
+    for epoch in range(20):  # loop over the dataset multiple times
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             labels = data['labels']
@@ -198,14 +196,10 @@ def train(trainloader):
             optimizer.step()
             # print statistics
             running_loss += loss.data[0]
-            plot_x.append((epoch + 1) * (i + 1))
-            plot_y.append(running_loss)
-            if i % 100 == 99:    # print every 20 mini-batches
+            if i % 80 == 79:    # print every 20 mini-batches
                 print('[%d, %5d] loss: %.3f' %
-                      (epoch + 1, i + 1, running_loss / 100))
+                      (epoch + 1, i + 1, running_loss / 80))
                 running_loss = 0.0
-        plt.plot(plot_x, plot_y, 'bo')
-        plt.show()
     print('Finished Training')
     print(time.clock())
     torch.save(model.state_dict(), './p1a.pkl')
