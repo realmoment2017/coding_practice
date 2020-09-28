@@ -21,3 +21,5 @@
 * [CUDA_purge](https://stackoverflow.com/questions/56431461/how-to-remove-cuda-completely-from-ubuntu)
 
 * [CUDA_Install](https://medium.com/@chami.soufiane/installation-guide-for-cuda-10-x-on-ubuntu-16-04-18-04-20-04-3a826a110ff5)
+
+* [Anydesk VNC-viewer]
