@@ -17,3 +17,7 @@
 * [NAS](https://lab.wallarm.com/the-first-step-by-step-guide-for-implementing-neural-architecture-search-with-reinforcement-99ade71b3d28)(https://github.com/wallarm/nascell-automl)  
 
 * [TF name_scope](https://stackoverflow.com/questions/35919020/whats-the-difference-of-name-scope-and-a-variable-scope-in-tensorflow/43581502#43581502)
+
+* [CUDA_purge](https://stackoverflow.com/questions/56431461/how-to-remove-cuda-completely-from-ubuntu)
+
+* [CUDA_Install](https://medium.com/@chami.soufiane/installation-guide-for-cuda-10-x-on-ubuntu-16-04-18-04-20-04-3a826a110ff5)
