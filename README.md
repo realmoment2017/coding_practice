@@ -23,3 +23,10 @@
 * [CUDA_Install](https://medium.com/@chami.soufiane/installation-guide-for-cuda-10-x-on-ubuntu-16-04-18-04-20-04-3a826a110ff5)
 
 * [Anydesk VNC-viewer]
+
+* [pyrender egl](https://github.com/mcfletch/pyopengl/issues/27)
+
+* [redirect stderr stdout](https://linuxize.com/post/bash-redirect-stderr-stdout/)
+
+* [ OpenGL testing glxgears]
+
