@@ -30,3 +30,5 @@
 
 * [ OpenGL testing glxgears]
 
+* [Hough Transform](https://alyssaq.github.io/2014/understanding-hough-transform/)
+
