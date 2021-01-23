@@ -1,5 +1,7 @@
 * [OpenCV OpenGL conversion](https://strawlab.org/2011/11/05/augmented-reality-with-OpenGL/).
 
+* [OpenCV OpenGL conversion](https://fruty.io/2019/08/29/augmented-reality-with-opencv-and-opengl-the-tricky-projection-matrix/)
+
 * [Pybullet texture](https://github.com/bulletphysics/bullet3/blob/master/examples/pybullet/examples/changeTexture.py).
 
 * [NAS blog](https://lilianweng.github.io/lil-log/).
